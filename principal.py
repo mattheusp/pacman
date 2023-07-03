@@ -71,7 +71,6 @@ class Game:
             constantes.LARGURA / 2,
             320
         )
-
         pygame.display.flip()
         self.esperar_por_jogador()
 
@@ -80,7 +79,7 @@ class Game:
         while esperando:
             self.relogio.tick(constantes.FPS)
             for event in pygame.event.get():
-                if event.type == pygame.event.QUIT:
+                if event.type == pygame.QUIT:
                     esperando = False
                     self.esta_rodando = False
                 if event.type == pygame.KEYUP:
@@ -94,6 +93,6 @@ g.mostrar_tela_start()
 
 while g.esta_rodando:
     g.novo_jogo()
-    g.mostrar_tela_game_over
+    g.mostrar_tela_game_over()
 
     
