@@ -57,7 +57,7 @@ class Game:
 
     def mostrar_texto(self, texto, tamanho, cor, x, y):
         #Exibe um texto na tela do jogo
-        fonte = pygame.font.Font(self.font, tamanho)
+        fonte = pygame.font.Font(self.fonte, tamanho)
         texto = fonte.render(texto, True, cor) 
         texto_rect = texto.get_rect()
         texto_rect.midtop = (x, y)
