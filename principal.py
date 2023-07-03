@@ -12,7 +12,7 @@ class Game:
         pygame.display.set_caption(constantes.TITULO_JOGO)
         self.relogio = pygame.time.Clock()
         self.esta_rodando = True
-        self.fonte = pygame.font.match_font(contantes.FONTE)
+        self.fonte = pygame.font.match_font(constantes.FONTE)
         self.carregar_arquivos()
 
     def novo_jogo(self):
@@ -51,12 +51,28 @@ class Game:
         #Carregar os arquivos de áudio e imagens
         diretorio_imagens = os.path.join(os.getcwd(), 'imagens')
         self.diretorio_audios = os.path.join(os.getcwd(), 'audios')
-        self.spritesheet = os.path.join(diretorio_imagens, constantes.SPRITESHEET)
+        self.spritesheet = os.path.join(diretorio_imagens, constantes.SPRITESSHEET)
         self.pacman_start_logo = os.path.join(diretorio_imagens, constantes.PACMAN_START_LOGO)
         self.pacman_start_logo = pygame.image.load(self.pacman_start_logo).convert()
 
+    def mostrar_texto(self, texto, tamanho, cor, x, y):
+        #Exibe um texto na tela do jogo
+        fonte = pygame.font.Font(self.font, tamanho)
+        texto = fonte.render(texto, True, cor) 
+        texto_rect = texto.get_rect()
+        texto_rect.midtop = (x, y)
+        self.tela.blit(texto, texto_rect)
+
     def mostrar_tela_start(self):
-        pass 
+        self.mostrar_texto(
+            '-Pressione uma tecla para jogar', 
+            32, 
+            constantes.AMARELO, 
+            constantes.LARGURA / 2,
+            320
+        )
+
+        pygame.display.flip()
 
     def mostrar_tela_game_over(self):
         pass 
