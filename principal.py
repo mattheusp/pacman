@@ -63,7 +63,17 @@ class Game:
         texto_rect.midtop = (x, y)
         self.tela.blit(texto, texto_rect)
 
+    def mostrar_start_logo(self, x, y):
+        start_logo_rect = self.pacman_start_logo.get_rect()
+        start_logo_rect.midtop = (x, y)
+        self.tela.blit(self.pacman_start_logo, start_logo_rect)
+
     def mostrar_tela_start(self):
+        pygame.mixer.music.load(os.path.join(self.diretorio_audios, constantes.MUSICA_START))
+        pygame.mixer.music.play()
+
+        self.mostrar_start_logo(constantes.LARGURA / 2, 20)
+
         self.mostrar_texto(
             '-Pressione uma tecla para jogar', 
             32, 
@@ -71,6 +81,15 @@ class Game:
             constantes.LARGURA / 2,
             320
         )
+        
+        self.mostrar_texto(
+            '-Desenvolvido por Mattheus P', 
+            19, 
+            constantes.BRANCO, 
+            constantes.LARGURA / 2,
+            570
+        )
+
         pygame.display.flip()
         self.esperar_por_jogador()
 
@@ -84,6 +103,8 @@ class Game:
                     self.esta_rodando = False
                 if event.type == pygame.KEYUP:
                     esperando = False
+                    pygame.mixer.music.stop()
+                    pygame.mixer.Sound(os.path.join(self.diretorio_audios, constantes.TECLA_START)).play()
 
     def mostrar_tela_game_over(self):
         pass 
